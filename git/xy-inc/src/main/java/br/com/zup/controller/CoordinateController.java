@@ -54,8 +54,11 @@ public class CoordinateController {
 
 	@RequestMapping(value = "coordinate", method = RequestMethod.POST)
 	public String saveCoordinate(Coordinate coordinate) throws Exception {
-		coordinateService.save(coordinate);
-		return "redirect:/coordinate/" + coordinate.getId();
+		if (coordinate.getX() > 0 && coordinate.getY() > 0) {
+			coordinateService.save(coordinate);
+			return "redirect:/coordinate/" + coordinate.getId();
+		}
+		return "coordinates";
 	}
 
 	@RequestMapping("find")
@@ -76,16 +79,4 @@ public class CoordinateController {
 		coordinateService.delete(id);
 		return "redirect:/coordinates";
 	}
-
-	// private static final String PATH = "/error";
-
-	// @RequestMapping(value = PATH)
-	// public String error() {
-	// return "Error handling";
-	// }
-	//
-	// @Override
-	// public String getErrorPath() {
-	// return PATH;
-	// }
 }
