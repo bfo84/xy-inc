@@ -58,7 +58,7 @@ public class CoordinateController {
 			coordinateService.save(coordinate);
 			return "redirect:/coordinate/" + coordinate.getId();
 		}
-		return "coordinates";
+		return "index";
 	}
 
 	@RequestMapping("find")
